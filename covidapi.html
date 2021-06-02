@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Covid Live API</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- Header -->
+		<div class="col-md-12 text-center mt-5 bg-warning">
+			<h2 style="letter-spacing: 2px;">Maharashtra Covid Live Update</h2>
+		</div>
+		<!-- Cards -->
+		<div class="row">
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Mumbai</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc1"></h4>
+						<h4 id="ac1"></h4>
+						<h4 id="de1"></h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Pune</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc2"></h4>
+						<h4 id="ac2"></h4>
+						<h4 id="de2"></h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Thane</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc3">New Cases :</h4>
+						<h4 id="ac3">Active Cases :</h4>
+						<h4 id="de3"></h4>
+					</div>
+				</div>
+			</div>
+		</div><!--Row End -->
+		<div class="row">
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold  bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Satara</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc4">New Cases :</h4>
+						<h4 id="ac4">Active Cases :</h4>
+						<h4 id="de4"></h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold  bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Sindhudurg</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc5">New Cases :</h4>
+						<h4 id="ac5">Active Cases :</h4>
+						<h4 id="de5"></h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-12 mt-5">
+				<div class="card w-75 mx-auto">
+					<div class="card-header text-center font-weight-bold  bg-dark" style="color: #fff;letter-spacing: 3px;font-size: 20px;">Sangli</div>
+					<div class="card-body" style="background-color: #E0E7F3;">
+						<h2 class="text-center"></h2>
+						<h4 id="nc6">New Cases :</h4>
+						<h4 id="ac6">Active Cases :</h4>
+						<h4 id="de6"></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+
+		async function covid () {
+			try {
+				const data = await fetch('https://api.covid19india.org/v4/min/data.min.json');
+	            const jsondata = await data.json();
+                
+                const city = jsondata.MH.districts.Mumbai.delta;
+                const city1 = jsondata.MH.districts.Pune.delta;
+                const city2 = jsondata.MH.districts.Thane.delta;
+                const city3 = jsondata.MH.districts.Satara.delta;
+                const city4 = jsondata.MH.districts.Sindhudurg.delta;
+                const city5 = jsondata.MH.districts.Sangli.delta;
+
+                
+                document.getElementById('nc1').innerHTML = `New Cases : ${city.confirmed}`;
+                document.getElementById('nc1').style.color = '#1361FD';
+                document.getElementById('ac1').innerHTML = `Recovered : ${city.recovered}`;
+                document.getElementById('ac1').style.color = '#169C41';
+                document.getElementById('de1').innerHTML = `Deceased : ${city.deceased}`;
+                document.getElementById('de1').style.color = '#E11F07';
+                
+                document.getElementById('nc2').innerHTML = `New Cases : ${city1.confirmed}`;
+                document.getElementById('nc2').style.color = '#1361FD';
+                document.getElementById('ac2').innerHTML = `Recovered : ${city1.recovered}`;
+                document.getElementById('ac2').style.color = '#169C41';
+                document.getElementById('de2').innerHTML = `Deceased : ${city1.deceased}`;
+                document.getElementById('de2').style.color = '#E11F07';
+
+                document.getElementById('nc3').innerHTML = `New Cases : ${city2.confirmed}`;
+                document.getElementById('nc3').style.color = '#1361FD';
+                document.getElementById('ac3').innerHTML = `Recovered : ${city2.recovered}`;
+                document.getElementById('ac3').style.color = '#169C41';
+                document.getElementById('de3').innerHTML = `Deceased : ${city2.deceased}`;
+                document.getElementById('de3').style.color = '#E11F07';
+
+                document.getElementById('nc4').innerHTML = `New Cases : ${city3.confirmed}`;
+                document.getElementById('nc4').style.color = '#1361FD';
+                document.getElementById('ac4').innerHTML = `Recovered : ${city3.recovered}`;
+                document.getElementById('ac4').style.color = '#169C41';
+                document.getElementById('de4').innerHTML = `Deceased : ${city3.deceased}`;
+                document.getElementById('de4').style.color = '#E11F07';
+
+                document.getElementById('nc5').innerHTML = `New Cases : ${city4.confirmed}`;
+                document.getElementById('nc5').style.color = '#1361FD';
+                document.getElementById('ac5').innerHTML = `Recovered : ${city4.recovered}`;
+                document.getElementById('ac5').style.color = '#169C41';
+                document.getElementById('de5').innerHTML = `Deceased : ${city4.deceased}`;
+                document.getElementById('de5').style.color = '#E11F07';
+
+                document.getElementById('nc6').innerHTML = `New Cases : ${city5.confirmed}`;
+                document.getElementById('nc6').style.color = '#1361FD';
+                document.getElementById('ac6').innerHTML = `Recovered : ${city5.recovered}`;
+                document.getElementById('ac6').style.color = '#169C41';
+                document.getElementById('de6').innerHTML = `Deceased : ${city5.deceased}`;
+                document.getElementById('de6').style.color = '#E11F07';
+
+
+            } catch(error) {
+            	console.log(`error is :${error}`);
+            }
+        }	
+
+covid();
+
+	</script>
+</body>
+</html>
